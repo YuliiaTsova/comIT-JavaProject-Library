@@ -2,6 +2,7 @@ package org.comit.spring.entity;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -30,6 +31,7 @@ public class Book implements Serializable {
 	 
 	 @ManyToOne(fetch = FetchType.EAGER, optional = false)
 	 @JoinColumn(name = "category_id")
+	 @JsonBackReference
 	 private Category category;
 
 	public long getId() {

@@ -1,10 +1,17 @@
 package org.comit.spring.entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -18,9 +25,22 @@ public class Category {
 	 @Column(name = "id")
 	 private long id;
 	 private String name;
+	 ////////////
+	 @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+	 @JsonIgnoreProperties(value = { "category" ,"hibernateLazyInitializer", "handler" }, allowSetters = true)
+	 @JsonManagedReference
+	 private List<Book> books;
+		public List<Book> getBooks() {
+			return books;
+		}
+		public void setBooks(List<Book> books) {
+			this.books = books;
+			}
+	 ////////////
 	public long getId() {
 		return id;
 	}
+	
 	public void setId(long id) {
 		this.id = id;
 	}

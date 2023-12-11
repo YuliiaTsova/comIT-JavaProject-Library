@@ -18,8 +18,8 @@ public class BookController {
 	private BookService bookService;
 	
 	@GetMapping("/books")
-	public List<BookCategoryDTO> getAllBooksWithCategory (){
-		return bookService.getAllBooksCategory();
+	public List<BookCategoryDTO> getTrands (){
+		return bookService.getTrands();
 	}
 
 	@GetMapping("/books/name")
@@ -32,12 +32,13 @@ public class BookController {
 	 return bookService.getById(Long.parseLong(id));
 	}
 	
-	@GetMapping("/category")
-	public List<BookCategoryDTO> getBooksByCategories (@RequestParam String category){
-	 return bookService.getBooksByCategories(category);
-	 
-	 //http://localhost:8080/category?category=Fantasy
-	}
+	//using query
+//	@GetMapping("/category")
+//	public List<BookCategoryDTO> getBooksByCategories (@RequestParam String category){
+//	 return bookService.getBooksByCategories(category);
+//	 
+//	 //http://localhost:8080/category?category=Fantasy
+//	}
 	
 //	@GetMapping("/books/name2")
 //	public <Book> getAllBooksWithCategory2 (){

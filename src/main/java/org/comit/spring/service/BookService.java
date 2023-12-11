@@ -1,5 +1,6 @@
 package org.comit.spring.service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,12 +16,25 @@ public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
 
-	public List<BookCategoryDTO> getAllBooksCategory() {
-		return bookRepository.findAll().stream()
-				.map(this::convertEntityToDto)
-				.collect(Collectors.toList());
-		
-	}
+//	public List<BookCategoryDTO> getAllBooksWithCategory() {
+//		List<BookCategoryDTO> bookCategoryDTO = bookRepository.findAll().stream()
+//				.map(this::convertEntityToDto)
+//				.limit(10)
+//				.collect(Collectors.toList());
+//		Collections.shuffle(bookCategoryDTO);
+//		return bookCategoryDTO;
+//		
+//	}
+	
+	public List<BookCategoryDTO> getTrands() {
+	List<BookCategoryDTO> bookCategoryDTO = bookRepository.getFindByratingGreaterThan(4.5).stream()
+			.map(this::convertEntityToDto)
+			.limit(10)
+			.collect(Collectors.toList());
+	Collections.shuffle(bookCategoryDTO);
+	return bookCategoryDTO;
+	
+}
 	
 	public Book getByName(String title ) {
 		return bookRepository.findBytitle(title);
@@ -34,13 +48,15 @@ public class BookService {
 //		return bookRepository.getBooksByCategories();
 //	}
 	
-	public List<BookCategoryDTO> getBooksByCategories(String category) {
-		return bookRepository.getBooksByCategories(category).stream()
-				.map(this::convertEntityToDto)
-				.collect(Collectors.toList());
-		
-	}
-	
+	//using query
+//	public List<BookCategoryDTO> getBooksByCategories(String category) {
+//		return bookRepository.getBooksByCategories(category).stream()
+//				.map(this::convertEntityToDto)
+//				
+//				.collect(Collectors.toList());
+//		
+//	}
+//	
 //	public List<BookCategoryDTO> getSortBooks(String field){
 //		return bookRepository.findAll(Sort.by(Sort.Direction.ASC),field);
 //	Collections.sort(bookRepository.findAll(), Direction.ASK);
@@ -64,5 +80,7 @@ public class BookService {
 		
 	}
 	
-	
+	public List<BookCategoryDTO> convertBooks(List<Book> books) {
+		return books.stream().map(b -> convertEntityToDto(b)).collect(Collectors.toList());
+	}
 }
