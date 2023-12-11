@@ -1,8 +1,9 @@
 package org.comit.spring.service;
 
-import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import org.comit.spring.dto.CategoryDTO;
+import org.comit.spring.dto.CategoryBookDTO;
 import org.comit.spring.entity.Category;
 import org.comit.spring.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,24 +30,30 @@ public class CategoryService {
 //		
 //	}
 	
-	public CategoryDTO getBooksByCategory2(String category) {
+	public CategoryBookDTO getBooksByCategory2(String category) {
 	return convertEntityToDto(categoryRepository.findByname(category));
 	//return Collections.shuffle(convertEntityToDto(categoryRepository.findByname(category)));
 	
 }
-	
-	private CategoryDTO convertEntityToDto(Category category) {
-		CategoryDTO categoryDTO = new CategoryDTO();
+	public List<String> getCategories() {
+		return categoryRepository.findAll().stream()
+				.map(Category::getName)
+//				.map(CategoriesDTO::new)
+					.collect(Collectors.toList());
+//		return categoryRepository.findAll();
+	}
+	private CategoryBookDTO convertEntityToDto(Category category) {
+		CategoryBookDTO categoryBookDTO = new CategoryBookDTO();
 		
 		//CategoryDTO.setId(category.getId());
-		categoryDTO.setName(category.getName());
-		categoryDTO.setBooks(bookService.convertBooks(category.getBooks()));
+		categoryBookDTO.setName(category.getName());
+		categoryBookDTO.setBooks(bookService.convertBooks(category.getBooks()));
 //		CategoryDTO.setDescription(book.getDescription());
 //		bookCategoryDTO.setLanguage(book.getLanguage());
 //		bookCategoryDTO.setRating(book.getRating());
 //		bookCategoryDTO.setCopies(book.getCopies());
 //		bookCategoryDTO.setName(book.getCategory().getName());
 		
-		return categoryDTO;
+		return categoryBookDTO;
 	}
 }

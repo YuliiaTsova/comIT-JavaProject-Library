@@ -24,10 +24,10 @@ public class BookController {
 
 	@GetMapping("/books/name")
 	public Book getAllBooksWithCategory (@RequestParam String title){
-	 return bookService.getByName(title);
+	 return bookService.getByName(title,title);
 	}
 	
-	@GetMapping("/books/{id}")
+	@GetMapping("/books/{id}") 
 	public Book getBookById (@PathVariable String id){
 	 return bookService.getById(Long.parseLong(id));
 	}

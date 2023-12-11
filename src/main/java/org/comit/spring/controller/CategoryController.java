@@ -1,16 +1,17 @@
 package org.comit.spring.controller;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.comit.spring.dto.CategoryDTO;
+import org.comit.spring.dto.CategoryBookDTO;
 import org.comit.spring.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api")
 public class CategoryController {
 	
 	@Autowired
@@ -24,10 +25,15 @@ public class CategoryController {
 	
 	//http://localhost:8080/books/category?name=Fantasy
 	@GetMapping("/books/category")
-	public CategoryDTO getBooksByCategory(@RequestParam String name) {
+	public CategoryBookDTO getBooksByCategory(@RequestParam String name) {
 		//return Optional.of(categoryService.getBooksByCategory2(name)).orElseThrow();
 		return categoryService.getBooksByCategory2(name);
 //	 return categoryService.getBooksByCategory2(name);
+	}
+	
+	@GetMapping("/categories")
+	public List<String> getAllGategoriesNames() {
+		return categoryService.getCategories();
 	}
 
 }

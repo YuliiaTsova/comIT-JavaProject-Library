@@ -36,8 +36,8 @@ public class BookService {
 	
 }
 	
-	public Book getByName(String title ) {
-		return bookRepository.findBytitle(title);
+	public Book getByName(String title, String author ) {
+		return bookRepository.findByTitleContainingOrAuthorContaining(title ,author);
 	}
 	
 	public Book getById(Long id ) {

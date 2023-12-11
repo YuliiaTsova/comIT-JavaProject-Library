@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.comit.spring.entity.Book;
 
-public class CategoryDTO {
+public class CategoryBookDTO {
 	 private long id;
 	 private String name;
 	 private List<BookCategoryDTO> books;
@@ -30,14 +30,14 @@ public class CategoryDTO {
 	}
 	@Override
 	public String toString() {
-		return String.format("CategoryDTO [id=%s, name=%s, books=%s]", id, name, books);
+		return String.format("CategoryBookDTO [id=%s, name=%s, books=%s]", id, name, books);
 	}
-	public CategoryDTO(long id, String name, List<BookCategoryDTO> books) {
+	public CategoryBookDTO(long id, String name, List<BookCategoryDTO> books) {
 		this.id = id;
 		this.name = name;
 		this.books = books;
 	}
-	public CategoryDTO() {
+	public CategoryBookDTO() {
 	}	
 	 
 }
