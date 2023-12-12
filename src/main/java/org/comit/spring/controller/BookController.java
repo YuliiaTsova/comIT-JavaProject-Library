@@ -23,7 +23,7 @@ public class BookController {
 	}
 
 	@GetMapping("/books/name")
-	public Book getAllBooksWithCategory (@RequestParam String title){
+	public List<Book> getAllBooksWithCategory (@RequestParam String title){
 	 return bookService.getByName(title,title);
 	}
 	

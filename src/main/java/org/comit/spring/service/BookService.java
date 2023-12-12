@@ -36,7 +36,11 @@ public class BookService {
 	
 }
 	
-	public Book getByName(String title, String author ) {
+//	public Book getByName(String title, String author ) {
+//		return bookRepository.findByTitleContainingOrAuthorContaining(title ,author);
+//	}
+	
+	public List<Book> getByName(String title, String author ) {
 		return bookRepository.findByTitleContainingOrAuthorContaining(title ,author);
 	}
 	
