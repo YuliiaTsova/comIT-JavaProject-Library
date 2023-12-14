@@ -1,12 +1,10 @@
 package org.comit.spring.service;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-
 import org.comit.spring.dto.PostCheckoutDTO;
 import org.comit.spring.entity.Book;
 import org.comit.spring.entity.Checkout;
 import org.comit.spring.entity.CheckoutDetails;
+import org.comit.spring.repository.BookRepository;
 import org.comit.spring.repository.CheckoutDetailsRepository;
 import org.comit.spring.repository.CheckoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,8 @@ import org.springframework.stereotype.Service;
 		    private CheckoutDetailsRepository checkoutDetailsRepository;
 		 @Autowired
 		    private CheckoutRepository checkoutRepository;
+		 @Autowired
+		    private BookRepository bookRepository;
 
 
 		    @Autowired
@@ -32,25 +32,26 @@ import org.springframework.stereotype.Service;
 		    	
 		    	System.out.println(checkout.toString());
 
-		    	System.out.println("PASS1");
-		        // Set other order-related fields based on orderDTO
 		    	Checkout savedCheckout = checkoutRepository.save(checkout);
 
 	    	//Checkout savedCheckout = checkout;
-		    	System.out.println("PASS");
-		        // Save order details
+
 		        for (String detailsDTO : postCheckoutDTO.getBooks()) {
 		            CheckoutDetails checkoutDetails = new CheckoutDetails();
 		            System.out.println("PASS" + detailsDTO);
 		            
 		            checkoutDetails.setCkeckout(savedCheckout);
 		            
-		            checkoutDetails.setBook(bookService.getById(Long.parseLong(detailsDTO))); // Assuming ProductService has a method findById
+		            checkoutDetails.setBook(bookService.getById(Long.parseLong(detailsDTO))); 
 		         
 		            System.out.println(checkoutDetails.toString());
 
-		            // Set other order details-related fields based on detailsDTO
+
 		            checkoutDetailsRepository.save(checkoutDetails);
+		            
+		            Book  book = bookRepository.getReferenceById(Long.valueOf(detailsDTO));
+		            book.setCopies(0);
+		            bookRepository.save(book);
 		        }
 
 		        return savedCheckout;
