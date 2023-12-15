@@ -10,6 +10,8 @@ import org.comit.spring.repository.CheckoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
+
 	@Service
 	public class CheckoutService {
 		 @Autowired
@@ -26,6 +28,7 @@ import org.springframework.stereotype.Service;
 		    @Autowired
 		    private BookService bookService;
 
+		    @Transactional
 		    public Checkout saveCheckoutWithDetails(PostCheckoutDTO postCheckoutDTO) {
 		    	Checkout checkout = new Checkout();
 		    	checkout.setUser(userService.findById((postCheckoutDTO.getUserID())));
@@ -57,19 +60,9 @@ import org.springframework.stereotype.Service;
 		        return savedCheckout;
 		    }
 	}
-
-//	 @Autowired
-//	    private CheckoutRepository checkoutRepository;
-//	 
-//	   @Autowired
-//	    private UserService userService;
-//
-//	    public Checkout saveCheckout(PostCheckoutDTO postCheckoutDTO) {
-//	    	Checkout checkout = new Checkout();
-//	    	checkout.setUser(userService.findById(postCheckoutDTO.getUserID()));
-//	    			//postCheckoutDTO.getUser().getId())); // Assuming UserService has a method findById
-//
-//
-//	        return checkoutRepository.save(checkout);
-//	    }
-//}
+//	{
+//	    "userID": 1,
+//	    "books": [
+//	        "1","10",15
+//	    ]
+//	}
