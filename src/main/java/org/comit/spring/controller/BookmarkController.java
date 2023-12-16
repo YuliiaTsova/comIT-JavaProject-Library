@@ -40,7 +40,7 @@ public class BookmarkController {
 	    public BookmarkWithId addBookmark(@RequestBody BookmarkDTO bookmarkDTO) {
 	    	
 		 Bookmark savedBookmark = bookmarkService.addBookmark(bookmarkDTO);
-		 BookmarkWithId bookmarkWithId = new BookmarkWithId(savedBookmark.getId(),savedBookmark.getBook().getId());
+		 BookmarkWithId bookmarkWithId = new BookmarkWithId(savedBookmark.getId(),savedBookmark.getBook().getId(),savedBookmark.getBook().getCover(),savedBookmark.getBook().getAuthor(),savedBookmark.getBook().getTitle(),savedBookmark.getBook().getCopies());
 	            return bookmarkWithId;
 	    }
 	 
