@@ -8,6 +8,8 @@ import org.comit.spring.dto.BookCategoryDTO;
 import org.comit.spring.entity.Book;
 import org.comit.spring.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +17,27 @@ public class BookService {
 	
 	@Autowired
 	private BookRepository bookRepository;
+	//return pagination without total amount
+//	 public List<BookCategoryDTO> findAllPagin(double rating, Pageable pageable) {
+//		 List<BookCategoryDTO> bookCategoryDTO = bookRepository.findAllByratingGreaterThan(rating,pageable).stream()
+//					.map(this::convertEntityToDto)
+//				//	.limit(10)
+//					.collect(Collectors.toList());
+//		//	Collections.shuffle(bookCategoryDTO);
+//			return bookCategoryDTO;
+//		// return bookRepository.findAllByratingGreaterThan(rating,pageable);
+//	 }
+	 public Page<BookCategoryDTO> getTrandsWithPagination(double rating, Pageable pageable) {
+		// return bookRepository.findAllByratingGreaterThan(rating,pageable).map(this::convertEntityToDto)
+		 Page<BookCategoryDTO> bookCategoryDTO = bookRepository.findAllByratingGreaterThan(rating,pageable)//.stream()
+					.map(this::convertEntityToDto);
+				//	.limit(10)
+				//	.collect(Collectors.toList());
+		//	Collections.shuffle(bookCategoryDTO);
+			return bookCategoryDTO;
+		// return bookRepository.findAllByratingGreaterThan(rating,pageable);
+	 }
+
 
 //	public List<BookCategoryDTO> getAllBooksWithCategory() {
 //		List<BookCategoryDTO> bookCategoryDTO = bookRepository.findAll().stream()

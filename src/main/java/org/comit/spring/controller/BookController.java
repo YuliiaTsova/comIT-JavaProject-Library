@@ -6,6 +6,8 @@ import org.comit.spring.dto.BookCategoryDTO;
 import org.comit.spring.entity.Book;
 import org.comit.spring.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,4 +47,21 @@ public class BookController {
 //	 bookService.getByName("Eternal Love");
 //	 return null;
 //	}
+	
+//	@GetMapping("/booksss")
+//	  public List<BookCategoryDTO> findAll(
+//	          @RequestParam(defaultValue = "0") int page,
+//	          @RequestParam(defaultValue = "3") int size) {
+//	      List<BookCategoryDTO> result = bookService.findAllPagin(4.5,PageRequest.of(page, size));
+//	      return  bookService.findAllPagin(4.5,PageRequest.of(page, size));
+//	     // return result.getContent();
+
+	      @GetMapping("/trands")
+		  public Page<BookCategoryDTO> findAll(
+		          @RequestParam(defaultValue = "0") int page,
+		          @RequestParam(defaultValue = "3") int size) {
+		      Page<BookCategoryDTO> result = bookService.getTrandsWithPagination(4.5,PageRequest.of(page, size));
+		      return  result;
+	  }
+
 }
