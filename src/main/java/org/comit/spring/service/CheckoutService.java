@@ -1,5 +1,8 @@
 package org.comit.spring.service;
 
+import java.util.List;
+
+import org.comit.spring.dto.CheckoutDetailsDTO;
 import org.comit.spring.dto.PostCheckoutDTO;
 import org.comit.spring.entity.Book;
 import org.comit.spring.entity.Checkout;
@@ -43,7 +46,7 @@ import jakarta.transaction.Transactional;
 		            CheckoutDetails checkoutDetails = new CheckoutDetails();
 		            System.out.println("PASS" + detailsDTO);
 		            
-		            checkoutDetails.setCkeckout(savedCheckout);
+		            checkoutDetails.setCheckout(savedCheckout);
 		            
 		            checkoutDetails.setBook(bookService.getById(Long.parseLong(detailsDTO))); 
 		         
@@ -59,6 +62,9 @@ import jakarta.transaction.Transactional;
 
 		        return savedCheckout;
 		    }
+		    
+
+		
 	}
 //	{
 //	    "userID": 1,

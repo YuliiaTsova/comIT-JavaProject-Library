@@ -40,7 +40,7 @@ public class CheckoutDetails {
 			return checkout;
 		}
 
-		public void setCkeckout(Checkout checkout) {
+		public void setCheckout(Checkout checkout) {
 			this.checkout = checkout;
 		}
 
