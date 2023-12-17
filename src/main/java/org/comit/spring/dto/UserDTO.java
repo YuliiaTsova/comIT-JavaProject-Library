@@ -3,18 +3,16 @@ package org.comit.spring.dto;
 import jakarta.persistence.Column;
 
 public class UserDTO {
-	 private Long id;
 	 private String firstName;
 	 private String lastName;
 	 private String phone;
 	 private String username;
-	 private String password;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	// private String password;
+	 private String street;
+	 private String city;
+	 private String province;
+	 private String postCode;
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -39,24 +37,55 @@ public class UserDTO {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPassword() {
-		return password;
+//	public String getPassword() {
+//		return password;
+//	}
+//	public void setPassword(String password) {
+//		this.password = password;
+//	}
+
+	public String getStreet() {
+		return street;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getProvince() {
+		return province;
+	}
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	public String getPostCode() {
+		return postCode;
+	}
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
 	}
 	@Override
 	public String toString() {
-		return String.format("UserDTO [id=%s, firstName=%s, lastName=%s, phone=%s, username=%s, password=%s]", id,
-				firstName, lastName, phone, username, password);
+		return String.format(
+				"UserDTO [firstName=%s, lastName=%s, phone=%s, username=%s, street=%s, city=%s, province=%s, postCode=%s]",
+				firstName, lastName, phone, username, street, city, province, postCode);
 	}
-	public UserDTO(Long id, String firstName, String lastName, String phone, String username, String password) {
-		this.id = id;
+
+
+	public UserDTO(String firstName, String lastName, String phone, String username, String street, String city,
+			String province, String postCode) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phone = phone;
 		this.username = username;
-		this.password = password;
+		this.street = street;
+		this.city = city;
+		this.province = province;
+		this.postCode = postCode;
 	}
 	public UserDTO() {
 	}
