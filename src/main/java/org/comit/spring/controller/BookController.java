@@ -8,6 +8,7 @@ import org.comit.spring.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,10 +20,10 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 	
-	@GetMapping("/books")
-	public List<BookCategoryDTO> getTrands (){
-		return bookService.getTrands();
-	}
+//	@GetMapping("/books")
+//	public List<BookCategoryDTO> getTrands (){
+//		return bookService.getTrands();
+//	}
 
 	@GetMapping("/books/name")
 	public List<Book> getAllBooksWithCategory (@RequestParam String title){
@@ -60,7 +61,7 @@ public class BookController {
 		  public Page<BookCategoryDTO> findAll(
 		          @RequestParam(defaultValue = "0") int page,
 		          @RequestParam(defaultValue = "3") int size) {
-		      Page<BookCategoryDTO> result = bookService.getTrandsWithPagination(4.5,PageRequest.of(page, size));
+		      Page<BookCategoryDTO> result = bookService.getTrandsWithPagination(4.5,PageRequest.of(page, size,Sort.by("copies").descending().and(Sort.by("title"))));
 		      return  result;
 	  }
 

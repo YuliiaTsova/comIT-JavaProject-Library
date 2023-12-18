@@ -5,6 +5,8 @@ import java.util.List;
 import org.comit.spring.dto.CategoryBookDTO;
 import org.comit.spring.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,11 +28,11 @@ public class CategoryController {
 	//http://localhost:8080/books/category?name=Fantasy
 	@GetMapping("/books/category")
 	public CategoryBookDTO getBooksByCategory(@RequestParam String name) {
-		//return Optional.of(categoryService.getBooksByCategory2(name)).orElseThrow();
 		return categoryService.getBooksByCategory2(name);
-//	 return categoryService.getBooksByCategory2(name);
+
 	}
 	
+
 	@GetMapping("/categories")
 	public List<String> getAllGategoriesNames() {
 		return categoryService.getCategories();

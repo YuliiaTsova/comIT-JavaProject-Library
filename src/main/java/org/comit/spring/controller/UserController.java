@@ -1,13 +1,13 @@
 package org.comit.spring.controller;
 
-import java.io.InputStream;
-
+import org.comit.spring.dto.UserDTO;
 import org.comit.spring.entity.LoginForm;
 import org.comit.spring.entity.User;
 import org.comit.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -28,4 +28,10 @@ public class UserController {
 	         
 	            return user.getUsername();
 	    }
+	 
+	 @GetMapping("profile/info")
+	    public UserDTO getBookmarks (){
+		  User user = userService.findById(1L);
+				return new UserDTO(user.getFirstName(),user.getLastName(),user.getPhone(),user.getUsername(),user.getAddress().getStreet(),user.getAddress().getCity(),user.getAddress().getProvince(),user.getAddress().getPostCode());// findByUsername());
+			}
 }
