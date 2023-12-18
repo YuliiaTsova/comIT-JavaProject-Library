@@ -25,22 +25,17 @@ import jakarta.transaction.Transactional;
 		    private BookRepository bookRepository;
 
 
-		    @Autowired
+		 @Autowired
 		    private UserService userService;
 
-		    @Autowired
+		 @Autowired
 		    private BookService bookService;
 
-		    @Transactional
+		 @Transactional
 		    public Checkout saveCheckoutWithDetails(PostCheckoutDTO postCheckoutDTO) {
 		    	Checkout checkout = new Checkout();
 		    	checkout.setUser(userService.findById((postCheckoutDTO.getUserID())));
-		    	
-		    	System.out.println(checkout.toString());
-
 		    	Checkout savedCheckout = checkoutRepository.save(checkout);
-
-	    	//Checkout savedCheckout = checkout;
 
 		        for (String detailsDTO : postCheckoutDTO.getBooks()) {
 		            CheckoutDetails checkoutDetails = new CheckoutDetails();
@@ -49,9 +44,6 @@ import jakarta.transaction.Transactional;
 		            checkoutDetails.setCheckout(savedCheckout);
 		            
 		            checkoutDetails.setBook(bookService.getById(Long.parseLong(detailsDTO))); 
-		         
-		            System.out.println(checkoutDetails.toString());
-
 
 		            checkoutDetailsRepository.save(checkoutDetails);
 		            
@@ -66,9 +58,3 @@ import jakarta.transaction.Transactional;
 
 		
 	}
-//	{
-//	    "userID": 1,
-//	    "books": [
-//	        "1","10",15
-//	    ]
-//	}

@@ -37,11 +37,6 @@ public class Book implements Serializable {
 	 @JsonBackReference
 	 private Category category;
 	 
-//	 @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
-//	 @JsonIgnoreProperties(value = { "book" ,"hibernateLazyInitializer", "handler" }, allowSetters = true)
-//	 @JsonManagedReference
-//	 private List<Checkout> checkouts;
-
 	public long getId() {
 		return id;
 	}

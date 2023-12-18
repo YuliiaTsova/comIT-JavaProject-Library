@@ -23,17 +23,10 @@ public class BookmarkService {
 	    private BookService bookService;
 	    public Bookmark addBookmark(BookmarkDTO bookmarkDTO) {
 	    	Bookmark bookmark = new Bookmark();
-	    	//bookmark.setUser(userService.findById((bookmarkDTO.getUserID())));
 	    	bookmark.setUser(userService.findById(1L));
 	    	bookmark.setBook(bookService.getById((bookmarkDTO.getBookId())));
-	    	
-	    	//System.out.println(checkout.toString());
-
 	    	Bookmark savedBookmark = bookmarkRepository.save(bookmark);
-
-    	
-
-	        return savedBookmark;
+          return savedBookmark;
 	    }
 	    
 //	    public List<Bookmark> getBookmarks() {
@@ -41,7 +34,6 @@ public class BookmarkService {
 //	    }
 
 	    public List<BookmarkWithId> getBookmarks() {
-	    	//return bookmarkRepository.getByUser(1L).stream().map(el -> el.getBook().getId()).collect(Collectors.toList());  
 	    	return bookmarkRepository.getByUser(1L).stream().map(el -> new BookmarkWithId(el.getId(),el.getBook().getId(),el.getBook().getCover(),el.getBook().getAuthor(),el.getBook().getTitle(),el.getBook().getCopies())).collect(Collectors.toList());  
 	    }
 	    

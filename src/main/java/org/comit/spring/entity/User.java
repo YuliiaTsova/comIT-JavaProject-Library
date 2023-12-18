@@ -90,10 +90,5 @@ public class User implements Serializable {
 	}
 	public User() {
 	}
-	 
-//	 @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
-//	// @JsonIgnoreProperties(value = { "user" ,"hibernateLazyInitializer", "handler" }, allowSetters = true)
-//	 @JsonManagedReference
-//	 private List<Checkout> checkouts;
-	 
+	  
 }

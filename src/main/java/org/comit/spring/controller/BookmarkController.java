@@ -19,21 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*")
-//@RequestMapping("/bookmark")
 
 public class BookmarkController {
 
 	 @Autowired
 	    private BookmarkService bookmarkService;
 
-//	 @ResponseStatus(HttpStatus.OK)
-//	    @PostMapping("/bookmark")
-//	    public Long addBookmark(@RequestBody BookmarkDTO bookmarkDTO) {
-//	    	
-//		 Bookmark savedBookmark = bookmarkService.addBookmark(bookmarkDTO);
-//
-//	            return savedBookmark.getBook().getId();
-//	    }
 	 
 	 @ResponseStatus(HttpStatus.OK)
 	    @PostMapping("/bookmark")
@@ -45,13 +36,7 @@ public class BookmarkController {
 	    }
 	 
 	    @GetMapping("/bookmark")
-//	    public List<Bookmark> getBookmarks (){
-//			return bookmarkService.getBookmarks();
-//		}
-//	    return only id books
-//	    public List<Long> getBookmarks (){
-//			return bookmarkService.getBookmarks();
-//		}
+
 	    public List<BookmarkWithId> getBookmarks (){
 				return bookmarkService.getBookmarks();
 			}

@@ -17,37 +17,12 @@ public class BookService {
 	
 	@Autowired
 	private BookRepository bookRepository;
-	//return pagination without total amount
-//	 public List<BookCategoryDTO> findAllPagin(double rating, Pageable pageable) {
-//		 List<BookCategoryDTO> bookCategoryDTO = bookRepository.findAllByratingGreaterThan(rating,pageable).stream()
-//					.map(this::convertEntityToDto)
-//				//	.limit(10)
-//					.collect(Collectors.toList());
-//		//	Collections.shuffle(bookCategoryDTO);
-//			return bookCategoryDTO;
-//		// return bookRepository.findAllByratingGreaterThan(rating,pageable);
-//	 }
 	 public Page<BookCategoryDTO> getTrandsWithPagination(double rating, Pageable pageable) {
-		// return bookRepository.findAllByratingGreaterThan(rating,pageable).map(this::convertEntityToDto)
-		 Page<BookCategoryDTO> bookCategoryDTO = bookRepository.findAllByratingGreaterThan(rating,pageable)//.stream()
+		 Page<BookCategoryDTO> bookCategoryDTO = bookRepository.findAllByratingGreaterThan(rating,pageable)
 					.map(this::convertEntityToDto);
-				//	.limit(10)
-				//	.collect(Collectors.toList());
-		//	Collections.shuffle(bookCategoryDTO);
 			return bookCategoryDTO;
-		// return bookRepository.findAllByratingGreaterThan(rating,pageable);
 	 }
 
-
-//	public List<BookCategoryDTO> getAllBooksWithCategory() {
-//		List<BookCategoryDTO> bookCategoryDTO = bookRepository.findAll().stream()
-//				.map(this::convertEntityToDto)
-//				.limit(10)
-//				.collect(Collectors.toList());
-//		Collections.shuffle(bookCategoryDTO);
-//		return bookCategoryDTO;
-//		
-//	}
 	
 	public List<BookCategoryDTO> getTrands() {
 	List<BookCategoryDTO> bookCategoryDTO = bookRepository.getFindByratingGreaterThan(4.5).stream()
@@ -71,24 +46,7 @@ public class BookService {
 		return bookRepository.getReferenceById(id);
 	}
 	
-//	public List<BookCategoryDTO> getBooksByCategories( ) {
-//		return bookRepository.getBooksByCategories();
-//	}
-	
-	//using query
-//	public List<BookCategoryDTO> getBooksByCategories(String category) {
-//		return bookRepository.getBooksByCategories(category).stream()
-//				.map(this::convertEntityToDto)
-//				
-//				.collect(Collectors.toList());
-//		
-//	}
-//	
-//	public List<BookCategoryDTO> getSortBooks(String field){
-//		return bookRepository.findAll(Sort.by(Sort.Direction.ASC),field);
-//	Collections.sort(bookRepository.findAll(), Direction.ASK);
-//		
-//	}
+
 	private BookCategoryDTO convertEntityToDto(Book book) {
 		BookCategoryDTO bookCategoryDTO = new BookCategoryDTO();
 		
@@ -100,11 +58,9 @@ public class BookService {
 		bookCategoryDTO.setLanguage(book.getLanguage());
 		bookCategoryDTO.setRating(book.getRating());
 		bookCategoryDTO.setCopies(book.getCopies());
-		bookCategoryDTO.setName(book.getCategory().getName());
-		
+		bookCategoryDTO.setName(book.getCategory().getName());	
 		return bookCategoryDTO;
-		
-		
+	
 	}
 	
 	public List<BookCategoryDTO> convertBooks(List<Book> books) {

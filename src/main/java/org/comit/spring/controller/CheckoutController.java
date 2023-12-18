@@ -24,14 +24,8 @@ public class CheckoutController {
 	 @ResponseStatus(HttpStatus.OK)
 	    @PostMapping("/add")
 	    public Checkout placeCheckout(@RequestBody PostCheckoutDTO postCheckoutDTO) {
-	    	
-	 //      try {
-	            Checkout savedCheckout = checkoutService.saveCheckoutWithDetails(postCheckoutDTO);
-	         //   return Checkout.ok("Order with ID " + savedCheckout.getId() + " and details saved successfully.");
-	      //  } catch (Exception e) {
-	      //      return Checkout.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error saving order and details: " + e.getMessage());
-	     //   }
-	            return savedCheckout;
+	      Checkout savedCheckout = checkoutService.saveCheckoutWithDetails(postCheckoutDTO);
+	      return savedCheckout;
 	    }
 
 }

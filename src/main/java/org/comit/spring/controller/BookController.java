@@ -35,34 +35,14 @@ public class BookController {
 	 return bookService.getById(Long.parseLong(id));
 	}
 	
-	//using query
-//	@GetMapping("/category")
-//	public List<BookCategoryDTO> getBooksByCategories (@RequestParam String category){
-//	 return bookService.getBooksByCategories(category);
-//	 
-//	 //http://localhost:8080/category?category=Fantasy
-//	}
 	
-//	@GetMapping("/books/name2")
-//	public <Book> getAllBooksWithCategory2 (){
-//	 bookService.getByName("Eternal Love");
-//	 return null;
-//	}
-	
-//	@GetMapping("/booksss")
-//	  public List<BookCategoryDTO> findAll(
-//	          @RequestParam(defaultValue = "0") int page,
-//	          @RequestParam(defaultValue = "3") int size) {
-//	      List<BookCategoryDTO> result = bookService.findAllPagin(4.5,PageRequest.of(page, size));
-//	      return  bookService.findAllPagin(4.5,PageRequest.of(page, size));
-//	     // return result.getContent();
 
-	      @GetMapping("/trands")
-		  public Page<BookCategoryDTO> findAll(
-		          @RequestParam(defaultValue = "0") int page,
-		          @RequestParam(defaultValue = "3") int size) {
-		      Page<BookCategoryDTO> result = bookService.getTrandsWithPagination(4.5,PageRequest.of(page, size,Sort.by("copies").descending().and(Sort.by("title"))));
-		      return  result;
+	@GetMapping("/trends")
+	public Page<BookCategoryDTO> findAll(
+		@RequestParam(defaultValue = "0") int page,
+		@RequestParam(defaultValue = "3") int size) {
+		  Page<BookCategoryDTO> result = bookService.getTrandsWithPagination(4.5,PageRequest.of(page, size,Sort.by("copies").descending().and(Sort.by("rating")).descending()));
+		  return  result;
 	  }
 
 }

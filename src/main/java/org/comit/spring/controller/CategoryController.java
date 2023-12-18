@@ -13,17 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+//@RequestMapping("/api")
 public class CategoryController {
 	
 	@Autowired
 	private CategoryService categoryService;
 	
-	//http://localhost:8080/books/category?name=Fantasy
-//	@GetMapping("/books/category")
-//	public List<Category> getByName(@RequestParam String name) {
-//	 return categoryService.getBooksByCategory(name);
-//	}
 	
 	//http://localhost:8080/books/category?name=Fantasy
 	@GetMapping("/books/category")
@@ -32,7 +27,6 @@ public class CategoryController {
 
 	}
 	
-
 	@GetMapping("/categories")
 	public List<String> getAllGategoriesNames() {
 		return categoryService.getCategories();

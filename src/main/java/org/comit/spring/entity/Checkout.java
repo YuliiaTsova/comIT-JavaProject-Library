@@ -31,17 +31,10 @@ public class Checkout {
 	 @DateTimeFormat(pattern = "yyyy-MM-dd")
 	 private  java.sql.Date dueDate = new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 14);
 	 private int returned;
-	 
-	 //@Column(name = "data_creation")
-	 //@DateTimeFormat(pattern = "yyyy-MM-dd")
-	 //private Date creationDate;
-	 
-	  @Column(name = "creation_date", columnDefinition = "DATE DEFAULT CURRENT_DATE")
-	  private java.sql.Date creationDate = new Date(System.currentTimeMillis());
-//	  @DateTimeFormat(pattern = "yyyy-MM-dd")
-//	  private Date creationDate = new Date();
-	 
-	 
+
+	 @Column(name = "creation_date", columnDefinition = "DATE DEFAULT CURRENT_DATE")
+	 private java.sql.Date creationDate = new Date(System.currentTimeMillis());
+ 
 	 @ManyToOne(fetch = FetchType.EAGER, optional = false)
 	 @JoinColumn(name = "user_id")
 	 @JsonBackReference
@@ -105,7 +98,7 @@ public class Checkout {
 	}
 
 
-	public Checkout(long id, Date dueDate, int returned, Date startDate, User user) {
+	public Checkout(long id, Date dueDate, int returned, Date creationDate, User user) {
 		this.id = id;
 		this.dueDate = dueDate;
 		this.returned = returned;
