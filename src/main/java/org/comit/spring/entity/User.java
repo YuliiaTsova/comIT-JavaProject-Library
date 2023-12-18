@@ -1,21 +1,16 @@
 package org.comit.spring.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -32,6 +27,9 @@ public class User implements Serializable {
 	 private String phone;
 	 private String username;
 	 private String password;
+	 @OneToOne
+	 @JoinColumn(name = "address_id", referencedColumnName = "id")
+	 private Address address;
 	public long getId() {
 		return id;
 	}
@@ -68,18 +66,27 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@Override
-	public String toString() {
-		return String.format("User [id=%s, firstName=%s, lastName=%s, phone=%s, username=%s, password=%s]", id,
-				firstName, lastName, phone, username, password);
+	
+	public Address getAddress() {
+		return address;
 	}
-	public User(long id, String firstName, String lastName, String phone, String username, String password) {
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	public User(long id, String firstName, String lastName, String phone, String username, String password,
+			Address address) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phone = phone;
 		this.username = username;
 		this.password = password;
+		this.address = address;
+	}
+	@Override
+	public String toString() {
+		return String.format("User [id=%s, firstName=%s, lastName=%s, phone=%s, username=%s, password=%s, address=%s]",
+				id, firstName, lastName, phone, username, password, address);
 	}
 	public User() {
 	}
