@@ -1,8 +1,8 @@
 #Tomcat Server
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/my_library
+    url: jdbc:mysql://roundhouse.proxy.rlwy.net:15103/railway
     username: root
-    password: Library01
+    password: 61Eh-ghEbhHHCH1fecB3HFc4D53ha5-g
  # jpa:
    # hibernate.ddl-auto: update
