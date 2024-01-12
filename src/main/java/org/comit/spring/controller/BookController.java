@@ -34,15 +34,16 @@ public class BookController {
 	 return bookService.getByName(title,title);
 	}
 	
+	
 	@GetMapping("/books/{id}") 
 	public Book getBookById (@PathVariable String id){
 	 return bookService.getById(Long.parseLong(id));
 	}
 	
 	
-
+	@CrossOrigin(origins = "*")
 	@GetMapping("/trends")
-	 @ResponseStatus(code = HttpStatus.OK, reason = "OK")
+//	 @ResponseStatus(code = HttpStatus.OK, reason = "OK")
 	public Page<BookCategoryDTO> findAll(
 		@RequestParam(defaultValue = "0") int page,
 		@RequestParam(defaultValue = "3") int size) {
