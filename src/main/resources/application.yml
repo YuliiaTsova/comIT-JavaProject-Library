@@ -4,8 +4,8 @@ spring:
    # url: jdbc:mysql://localhost:3306/my_library
    # username: root
    # password: Library01
-    url: process.env.JAWSDB_URL
-    username: process.env.DB_USER
-    password:  process.env.DB_PW
+    url: ${JAWSDB_URL}
+    username: ${DB_USER}
+    password: ${DB_PW}
  # jpa:
    # hibernate.ddl-auto: update
